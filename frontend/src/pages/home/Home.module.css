@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&display=swap');
 .home{
     width: 100%;
     height: auto;
@@ -19,8 +20,37 @@
     gap: 25px;
 }
 .home_header_midContainer h1{
-    font-size: 65px;
-    color: linear-gradient(90deg, #4B83FF 0%, #B794F4 100%);
-    
-
+    font-size: 73px;
+    width: 100%;
+    background: linear-gradient(90deg, #4B83FF 0%, #B794F4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;  
+    font-family: "Outfit", serif;
+}
+.home_header_midContainer span{
+    font-family: "Open Sans", serif;
+    font-size: 20px;
+}
+.home_header_midContainer button{
+   height: 50px;
+   width: auto;
+   padding: 0 20px;
+   background: rgba(26, 95, 255, 1);
+   font-family: "Open Sans", serif;
+   border: none;
+   border-radius: 6px;
+   color: white;
+   font-size: 16px;
+   cursor: pointer;
+}
+.home_main{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem 0;
+}
+.home_main img{
+   width: auto;
+   height: 100%;
 }

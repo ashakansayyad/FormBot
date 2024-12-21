@@ -2,7 +2,6 @@
     display: flex;
     width: 100%;
     height: 80px;
-    border: 1px solid white;
     align-items: center;
     justify-content: space-between;
     padding: 0 80px;
@@ -14,6 +13,7 @@
 }
 .navhome_left h3{
   font-weight:700;
+  cursor: pointer;
 }
 .navhome_right{
     display: flex;
