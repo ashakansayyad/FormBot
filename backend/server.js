@@ -1,23 +1,26 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require("mongoose");
 const cors  = require("cors");
 const dotenv = require("dotenv");
+const userRoute = require("./routes/userRoutes");
 dotenv.config();
 
 
 app.use(cors());
-
-app.get("/",(req,res)=>{
-    res.send("Welcome to FormBot App Backend !!");
-})
+app.use(bodyParser.json()); //it parse the json data
+app.use(bodyParser.urlencoded({extended:true})); //it also parse the form data
+app.use("api/user",userRoute);
 
 mongoose
 .connect(process.env.MONGODB_URL)
 .then(()=>console.log("MongoDB Connected Successfully!!"))
 .catch((err)=>console.log("MongoDB Connection Error: ",err));
 
-
+app.get("/",(req,res)=>{
+    res.send("Welcome to FormBot App Backend !!");
+})
 
 const PORT  = process.env.PORT || 5000;
 

@@ -19,14 +19,16 @@
     align-items: center;
     gap: 25px;
 }
-.home_header_midContainer h1{
+.home_header_midContainer h1 {
     font-size: 73px;
     width: 100%;
     background: linear-gradient(90deg, #4B83FF 0%, #B794F4 100%);
+    background-clip: text; 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;  
     font-family: "Outfit", serif;
 }
+
 .home_header_midContainer span{
     font-family: "Open Sans", serif;
     font-size: 20px;

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {useNavigate} from 'react-router-dom';
 import Navhome from '../../components/navhome/Navhome';
 import Footer from '../../components/footer/Footer';
 import styles from './Home.module.css';
@@ -6,6 +7,7 @@ import triangle_icon from '../../assets/home_triangle_img.svg'
 import half_circle_icon from '../../assets/home_half_circle_img.svg';
 import main_img from '../../assets/home_main_img.png';
 function Home() {
+  const navigate = useNavigate();
   return (
     <div className={styles.home}>
       <Navhome/>
@@ -16,7 +18,7 @@ function Home() {
           <br /> visually</h1>
           <span>Typebot gives you powerful blocks to create unique chat experiences. Embed them <br />
           anywhere on your web/mobile apps and start collecting results like magic.</span>
-          <button>Create a FormBot  for free</button>
+          <button onClick={()=>navigate('/login')}>Create a FormBot  for free</button>
         </div>
         <img src={half_circle_icon} alt="icon" />
       </div>
