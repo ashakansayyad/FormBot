@@ -55,6 +55,7 @@ function Form({
   errorMessage ={},
   isSignup,
   isLogin,
+  handleSubmit
 }) {
   return (
     <div className={styles.form}>
@@ -80,7 +81,7 @@ function Form({
       {error?.isPasswordMatch && (
         <p id={styles.error}>{errorMessage?.isPasswordMatch?.message}</p>
       )}
-      <button>
+      <button onClick={handleSubmit}>
         {isSignup ? "Sign Up" : isLogin ? "Log In" :"Update"}
       </button>
     </div>

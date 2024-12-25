@@ -1,17 +1,20 @@
 import React,{useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import { signup } from '../../apis/user';
 import styles from './Signup.module.css';
 import Form from '../../components/form/Form';
-import back_arrow from '../../assets/back_arow.svg';
-import triangle_img from '../../assets/login_signup_triangle.png'
-import orange_circle_img from '../../assets/login_signup_orangle_circle.svg'
-import yellow_circle_img from '../../assets/login_signup_yellow_circle.svg'
-import userIcon from "../../assets/uerlogo.png";
-import emailIcon from "../../assets/email_log.png";
-import pwdIcon from "../../assets/password_log.png";
-import pwdViewIcon from "../../assets/view_pwd.png";
-import pwdHideIcon from "../../assets/hide_pwd.png";
-import google_icon from '../../assets/Google Icon.svg'
+import {back_arrow,
+  triangle_img,
+  orange_circle_img,
+  yellow_circle_img,
+  userIcon,
+  emailIcon,
+  pwdIcon,
+  pwdViewIcon,
+  pwdHideIcon,
+  google_icon} from '../../assets/assets';
+import { toast } from "react-toastify";
+
 function Signup() {
   const navigate = useNavigate();
   const [formData,setFormData] = useState({
@@ -124,7 +127,7 @@ const formFields = [
     }
 
     if(!formData.password){
-      setError((prev)=>({...prev,email:true}));
+      setError((prev)=>({...prev,password:true}));
       isError = true;
     }else if(!passwordPattern.test(formData.password)){
       toast.error( "Password must be at least 8 characters long, contain an uppercase letter, lowercase letter, symbol, and a number.");
@@ -138,6 +141,28 @@ const formFields = [
       setError((prev)=>({...prev,isPasswordMatch:true}));
       setError = true;
     }
+
+    if(!isError){
+      try{
+        const {name,email,password} = formData;
+        const userData = {name,email,password};
+
+        const res = await signup(userData);
+        if(res.status === 201){
+          toast.success("User register successfully!");
+          navigate('/login');
+        }
+      }catch(err){
+        if(err.response && err.response.status === 400){
+          toast.error(err.response.data.message);
+        }else{
+          console.error(err.response);
+        }
+      }
+    }
+
+
+
   }
 
 

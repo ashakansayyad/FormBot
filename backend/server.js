@@ -11,7 +11,7 @@ dotenv.config();
 app.use(cors());
 app.use(bodyParser.json()); //it parse the json data
 app.use(bodyParser.urlencoded({extended:true})); //it also parse the form data
-app.use("api/user",userRoute);
+app.use("/api/user",userRoute);
 
 mongoose
 .connect(process.env.MONGODB_URL)

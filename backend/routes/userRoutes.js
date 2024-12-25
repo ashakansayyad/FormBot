@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 dotenv.config();
 
 //user registeration
-router.post("/register",async(req,res)=>{
+router.post("/signup",async(req,res)=>{
     const {name,email,password} = req.body;
     try{
        const userExist = await User.findOne({email});
@@ -47,9 +47,9 @@ router.get("/",async(req,res)=>{
 
 // get specefic user by id
 router.get("/:id",authMiddleware,async(req,res)=>{
-    const userId = req.params;
+    const userId = req.params.id;
     try{
-        const userById = await User.findById({userId}).select("-password -_v");
+        const userById = await User.findById(userId).select("-password -_v");
         if(!userById){
             return res.status(404).json({message:"user not found!"});
         }
@@ -87,6 +87,60 @@ router.post("/login",async(req,res)=>{
 
     }catch(err){
         return res.status(400).json({message:"Something went wrong!"});
+    }
+})
+
+
+// update user data
+router.patch("/:id",authMiddleware,async(req,res)=>{
+    const userId = req.params.id;
+  
+    const {name,email,oldPassword,newPassword} = req.body;
+
+    try{
+        const user = await User.findById(userId);
+        console.log("user : ",user);
+        if(!user){
+            return res.status(404).json({message:"User not found!"});
+        } 
+        if(name && name === user.name){
+            return res.status(400).json("Name already exist!");
+        }
+        if(email && email === user.email){
+            return res.status(400).json({message:"Email already exist!"});
+        }
+
+        // verify old password if new password is provided
+
+        if(oldPassword && newPassword){
+           const isPasswordMatch = bcrypt.compare(oldPassword,user.password);
+
+            if(!isPasswordMatch){
+                return res.status(400).json({message:"Old password is incorrect!"});
+            }
+
+            const isSameAsOldPassword = bcrypt.compare(newPassword,user.password);
+
+            if(isSameAsOldPassword){
+                return res.status(400).json({message:"New password cannot be same as old password!"});
+            }
+            // hash and set new password
+            user.password = await bcrypt.hash(newPassword,10);
+
+        }
+        if(name){
+            user.name = name;
+        }
+        if(email){
+            user.email = email;
+        }
+        
+        await user.save();
+        return res.status(200).json({message:"User information updated successfully!"});
+
+    }catch(err){
+        console.error("Error updating user: ",err);
+        res.status(400).json({message:"updation failed"});
     }
 })
 
