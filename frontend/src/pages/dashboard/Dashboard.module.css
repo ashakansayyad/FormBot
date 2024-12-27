@@ -1,5 +1,63 @@
 .dashboard{
     width: 100%;
     height: auto;
-    
+}
+.dashboard_foldersConatiner{
+    display: flex;
+    width: 100%;
+    padding: 0 200px;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 3rem;
+}
+.create_folderConatiner,.folderConatiner{
+    display: flex;
+    width: auto;
+    cursor: pointer;
+    height: 40px;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0 15px;
+    border-radius: 6px;
+}
+.dashboard_filesContainer{
+    display: flex;
+    width: 100%;
+    padding: 0 200px;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 2rem;
+}
+.create_fileContainer{
+    width: 200px;
+    height: 250px;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 6px;
+    background: rgba(26, 95, 255, 1);
+    flex-direction: column;
+}
+.fileContainer{
+    width: 200px;
+    height: 250px;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.5);
+    position: relative;
+    flex-direction: column;
+}
+.fileContainer img{
+    position: absolute;
+    top: -3%;
+    left: 95%;
 }

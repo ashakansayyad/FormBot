@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.container,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 99;
+}
+
+.overlay {
+  background: rgba(43, 43, 43, 0);
+}
+
+.modalContent {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(24, 24, 27, 1);
+    color: white;
+    font-family: "Open Sans", serif;
+  padding: 25px 30px;
+  width: 400px;
+  height: 200px;
+  border: 1px solid rgba(71, 71, 74, 1);
+  z-index: 100;
+  border-radius: 24px;
+  box-shadow: 0px 0px 3.8px 0px rgba(255, 255, 255, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.modalContent p {
+  font-size: 20px;
+  font-family: "Open Sans", serif;
+  font-weight: 500;
+  text-align: center;
+}
+.modalContent input {
+    background: rgba(31, 31, 35, 1);
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    padding-left: 10px;
+    color: white;
+    font-weight: 600;
+}
+
+.modalContent_footer_two_btn {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalContent_footer_two_btn p {
+  font-size: 35px;
+  font-weight: 50;
+ color: rgba(71, 71, 74, 1);
+}
+
+.modalContent_footer_two_btn button {
+  height: 45px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+#done {
+    background: transparent;
+  color: rgba(75, 131, 255, 1);
+  font-family: "Open Sans", serif;
+  font-weight: 600;
+  border: none;
+  font-size: large;
+  transition: background 0.2s;
+}
+#done:hover {
+  background: #195b07;
+  color: white;
+}
+
+#cancle {
+  background: transparent;
+border: none;
+  color: white;
+  font-family: "Open Sans", serif;
+  font-weight: 600;
+  font-size: large;
+  transition: background 0.2s, color 0.2s;
+}
+#cancle:hover {
+  background: #cf3636;
+  color: white;
+}

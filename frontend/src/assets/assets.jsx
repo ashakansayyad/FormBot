@@ -11,6 +11,9 @@ import google_icon from './Google Icon.svg';
 import logout_icon from './logout_icon.svg';
 import up_arrow from './up_arrow.svg'
 import down_arrow from './down_arrow.svg'
+import delete_icon from './delete_icon.svg'
+import folder_icon from './folder_icon.svg'
+import create_file_icon from './create_file_icon.svg'
 
 export {
     back_arrow,
@@ -25,5 +28,8 @@ export {
     google_icon,
     logout_icon,
     up_arrow,
-    down_arrow
+    down_arrow,
+    delete_icon,
+    folder_icon,
+    create_file_icon
 }

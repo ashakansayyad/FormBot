@@ -19,47 +19,17 @@ const fileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Files",
     default: null,
+    validate:{
+      validator:function(value){
+        if(this.type === "folder" && value !== null){
+          return false;
+        }
+        return true;
+      },
+      message : "Folders cannot have a parent folder",
+    }
   },
-  files: [
-    {
-      name: {
-        type: String,
-        required: true,
-      },
-      creator: {
-        type: String,
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-  ],
-  subFolders: [
-    {
-      name: {
-        type: String,
-        required: true,
-      },
-      subfiles: [
-        {
-          name: {
-            type: String,
-            required: true,
-          }, 
-          creator: {
-            type: String,
-            required: true,
-          }, 
-          createdAt: {
-            type: Date,
-            default: Date.now,
-          },
-        },
-      ],
-    },
-  ],
+ 
   createdAt:{
     type:Date,
     default:Date.now

@@ -19,7 +19,7 @@ function Navdashboard() {
         onClick={toggleDropdown}
         className={styles.navdashboard_toggleConatiner_userInfo}>
             <p>Dewank Rastogi's workspace</p>
-            <img src={down_arrow} alt="a" />
+            <img src={isOpen ? up_arrow : down_arrow } alt="a" />
         </div>
         {
             isOpen && (
