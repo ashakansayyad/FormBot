@@ -1,16 +1,19 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from './ShareModal.module.css';
 import { TiArrowSortedDown } from "react-icons/ti";
 import { close_icon } from '../../assets/assets';
 import classNames from 'classnames';
 import { ThemeContext } from '../../context/ThemeContext';
 import { ModalContext } from '../../context/ModalContext';
+import { shareByEmail,shareByLink } from '../../apis/files';
+
 function ShareModal() {
   const { shareModal, toggleShareModal } = useContext(ModalContext);
   const [togglePermission, setTogglePermission] = useState(false);
   const { isDarkTheme } = useContext(ThemeContext);
   const [permission, setPermission] = useState("view");
-
+  const [email,setEmail] = useState("");
+  const [link,setLink] = useState("");
 
   const handleTogglePermission = () => {
     setTogglePermission(!togglePermission);
@@ -20,6 +23,12 @@ function ShareModal() {
   const handlePermissionChange = (permission) => {
     setPermission(permission);
     handleTogglePermission();
+  }
+
+  const handleShareByEmail = async()=>{
+    try{
+      const res = await shareByEmail({email,permission})
+    }
   }
 
   return (

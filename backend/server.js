@@ -6,6 +6,7 @@ const cors  = require("cors");
 const dotenv = require("dotenv");
 const userRoute = require("./routes/userRoutes");
 const filesRoute = require("./routes/filesRoutes");
+const shareRoute = require("./routes/shareRoutes");
 dotenv.config();
 
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json()); //it parse the json data
 app.use(bodyParser.urlencoded({extended:true})); //it also parse the form data
 app.use("/api/user",userRoute);
 app.use("/api/files",filesRoute);
+app.use("/api/share",shareRoute);
 
 mongoose
 .connect(process.env.MONGODB_URL)

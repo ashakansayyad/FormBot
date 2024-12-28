@@ -28,3 +28,22 @@ export const deleteFileOrFolder =async(id)=>{
     });
     return res;
 }
+
+// share dashboard by email
+export const shareByEmail = async(data)=>{
+    const headers = addTokenToHeader({headers:{}});
+    const res = await axios.post(`${imoort.meta.env.VITE_BASE_URL}/api/share/email`,data,{
+        headers
+    });
+
+   return res;
+}
+
+// generate shareable link
+export const shareByLink = async(data)=>{
+    const headers = addTokenToHeader({headers:{}});
+    const res = await axios.put(`${import.meta.env.VITE_BASE_URL}/api/share/link`,data,{
+        headers
+    });
+    return res;
+}

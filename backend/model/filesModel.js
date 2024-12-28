@@ -19,24 +19,30 @@ const fileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Files",
     default: null,
-    validate:{
-      validator:function(value){
-        if(this.type === "folder" && value !== null){
-          return false;
-        }
-        return true;
-      },
-      message : "Folders cannot have a parent folder",
-    }
   },
- 
-  createdAt:{
-    type:Date,
-    default:Date.now
-  }
+  sharedWith: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+      permission: {
+        type: String,
+        enum: ["view", "edit"],
+        default: "view",
+      },
+    },
+  ],
+  isPublic: {
+    type: Boolean,
+    default: false,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-
-const Files = mongoose.model("Files",fileSchema);
+const Files = mongoose.model("Files", fileSchema);
 
 module.exports = Files;
