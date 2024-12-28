@@ -66,13 +66,13 @@
 
 .iconToggle {
   position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 92%;
+  top: 55%;
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
+
 
 #error {
   margin-top: -1rem;

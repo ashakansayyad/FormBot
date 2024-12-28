@@ -19,23 +19,22 @@
 
 .modalContent.dark {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(24, 24, 27, 1);
   color: white;
   font-family: "Open Sans", serif;
-  padding: 25px 30px;
-  width: 400px;
-  height: 200px;
+  padding:60px 30px;
+  width: 650px;
+  height: 400px;
   border: 1px solid rgba(71, 71, 74, 1);
   z-index: 100;
   border-radius: 24px;
   box-shadow: 0px 0px 3.8px 0px rgba(255, 255, 255, 0.25);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 .modalContent.light {
   position: absolute;
@@ -45,18 +44,17 @@
   background: rgb(255, 254, 254);
   color: black;
   font-family: "Open Sans", serif;
-  padding: 25px 30px;
-  width: 400px;
-  height: 200px;
-  font-weight: 600;
+  padding:60px 30px;
+  width: 650px;
+  height: 400px;
+  font-weight: 700;
   border: 1px solid rgba(71, 71, 74, 1);
   z-index: 100;
   border-radius: 24px;
   box-shadow: 0px 0px 3.8px 0px rgba(255, 255, 255, 0.25);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .modalContent p {
@@ -65,6 +63,12 @@
   font-weight: 500;
   text-align: center;
 }
+.modalContent img {
+ position: absolute;
+ top: 5%;
+ cursor: pointer;
+ right: 4%;
+}
 .modalContent.dark input {
   background: rgba(31, 31, 35, 1);
   width: 100%;
@@ -72,7 +76,7 @@
   border: none;
   outline: none;
   border-radius: 12px;
-  padding-left: 10px;
+  padding-left: 15px;
   color: white;
   font-weight: 600;
 }
@@ -83,31 +87,80 @@
   border: none;
   outline: none;
   border-radius: 12px;
-  padding-left: 10px;
+  padding-left: 15px;
   color: black;
   font-weight: 550;
 }
 
-.modalContent_footer_two_btn {
+
+
+.modalContent_optionsContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.modalContent_optionsContainer #title {
+  display: flex;
+  width: 100px;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modalContent_optionsContainer_options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 100px;
+  padding: 10px 15px;
+  z-index: 999;
+  box-shadow: 0px 2px 22px rgba(126, 122, 122, 0.25);
+  background-color: #514444;
+  border-radius: 12px;
+}
+
+.modalContent_optionsContainer_options p {
+  font-weight: 500;
+  cursor: pointer;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.modalContent_optionsContainer_options p:hover {
+  background-color: #d6eaf4;
+  color: #1a73e8;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.modalContent_emailTitleContainer{
   display: flex;
   width: 100%;
-  gap: 15px;
   justify-content: space-between;
   align-items: center;
 }
-
-.modalContent_footer_two_btn p {
-  font-size: 35px;
-  font-weight: 50;
-  color: rgba(71, 71, 74, 1);
+.modalContent_emailTitleContainer h2,h2{
+ font-size: 20px;
+ font-weight: 400;
 }
 
-.modalContent_footer_two_btn button {
+
+button {
   height: 45px;
   border-radius: 12px;
   cursor: pointer;
   width: 100%;
   font-size: 16px;
+  box-shadow: 0px 4px 10px 0px rgba(233, 68, 75, 0.25);
 }
 
 #done {

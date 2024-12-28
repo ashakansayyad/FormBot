@@ -1,10 +1,15 @@
 import React, { useContext,useState,useEffect} from 'react'
 import styles from './CreateFilesModal.module.css';
 import { toast } from "react-toastify";
+import classNames from 'classnames'; 
+import { ThemeContext } from '../../context/ThemeContext';
 import { ModalContext } from '../../context/ModalContext';
 import { createFilesOrFolder } from '../../apis/files';
+
+
 function CreateFilesModal({creationType,selectedFolderId,fetchFilesOrFolders}) {
     const { folderModal, toggleFolderModal } = useContext(ModalContext);
+     const {isDarkTheme} = useContext(ThemeContext);
     const [newName, setNewName] = useState("");
     const [isFolder,setIsFolder] = useState(false);
 
@@ -41,7 +46,12 @@ function CreateFilesModal({creationType,selectedFolderId,fetchFilesOrFolders}) {
             {folderModal && (
                 <div className={styles.container}>
                     <div className={styles.overlay} onClick={toggleFolderModal}></div>
-                    <div className={styles.modalContent}>
+                    <div 
+                     className={classNames(styles.modalContent, {
+                                [styles.light]: !isDarkTheme,
+                                [styles.dark]: isDarkTheme,
+                              })}
+                   >
                         <p>Create New {isFolder ? "Folder" : "File"}</p>
                         <input
                          type="text"
@@ -54,7 +64,13 @@ function CreateFilesModal({creationType,selectedFolderId,fetchFilesOrFolders}) {
                                 Done
                             </button>
                             <p>|</p>
-                            <button id={styles.cancle} onClick={toggleFolderModal}>
+                            <button 
+                            onClick={toggleFolderModal}
+                              className={classNames(styles.cancle, {
+                                [styles.light]: !isDarkTheme,
+                                [styles.dark]: isDarkTheme,
+                              })}
+                           >
                                 Cancel
                             </button>
                         </div>

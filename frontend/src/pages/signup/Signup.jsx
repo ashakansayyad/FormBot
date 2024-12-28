@@ -136,10 +136,10 @@ const formFields = [
 
     if(!formData.cpassword){
       setError((prev)=>({...prev,cpassword:true}));
-      setError = true;
+      isError = true;
     }else if(formData.password !== formData.cpassword){
       setError((prev)=>({...prev,isPasswordMatch:true}));
-      setError = true;
+      isError = true;
     }
 
     if(!isError){

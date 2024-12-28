@@ -84,7 +84,7 @@ function Login() {
           toast.success("Logged in Successfully!");
           const token = res.data.token;
           localStorage.setItem("token",token);
-          navigate("/");
+          navigate("/dashboard");
         }
       } catch (err) {
         if (err.response.status === 400) {

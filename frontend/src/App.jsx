@@ -4,6 +4,7 @@ import { Home, Login, Signup, Notfound, Settings,Dashboard } from "./pages/pages
 import { ToastContainer } from "react-toastify";
 import { UserProvider } from "./context/UserConatext";
 import { ModalProvider } from "./context/ModalContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
@@ -11,6 +12,7 @@ function App() {
   return (
     <UserProvider>
       <ModalProvider>
+        <ThemeProvider>
         <BrowserRouter>
           <ToastContainer />
           <Routes>
@@ -22,6 +24,7 @@ function App() {
             <Route path="*" element={<Notfound />} />
           </Routes>
         </BrowserRouter>
+        </ThemeProvider>
       </ModalProvider>
     </UserProvider>
   );

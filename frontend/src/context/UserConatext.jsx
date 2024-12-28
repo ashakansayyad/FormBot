@@ -8,7 +8,7 @@ export const UserProvider = ({children})=>{
     const [loggedUserData,setLoggedUserData]=useState(null);
     const [loggedUserId,setLoggedUserId]=useState("");
     const [isLoading,setIsLoading] = useState(false);
-
+    const [loggedUserName,setLoggedUserName] = useState("");
 // get logged in user data
 const fetchUserData = async()=>{
     try{
@@ -26,6 +26,7 @@ const fetchUserData = async()=>{
         const res = await getUserData(userId);
         if(res && res.data){
             setLoggedUserData(res.data);
+            setLoggedUserName(res.data.name);
         }
       }
     }catch(err){
@@ -45,10 +46,11 @@ return (
   value={{
     loggedUserData,
     setLoggedUserData,
-    loggedUserId,
     setLoggedUserId,
+    setIsLoading,
+    loggedUserId,
     isLoading,
-    setIsLoading
+    loggedUserName,
   }}
   
   >

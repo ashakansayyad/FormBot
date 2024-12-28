@@ -17,14 +17,14 @@
   background: rgba(43, 43, 43, 0);
 }
 
-.modalContent {
+.modalContent.dark {
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(24, 24, 27, 1);
-    color: white;
-    font-family: "Open Sans", serif;
+  color: white;
+  font-family: "Open Sans", serif;
   padding: 25px 30px;
   width: 400px;
   height: 200px;
@@ -35,7 +35,28 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  justify-content: space-between;
+}
+.modalContent.light {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(255, 254, 254);
+  color: black;
+  font-family: "Open Sans", serif;
+  padding: 25px 30px;
+  width: 400px;
+  height: 200px;
+  font-weight: 600;
+  border: 1px solid rgba(71, 71, 74, 1);
+  z-index: 100;
+  border-radius: 24px;
+  box-shadow: 0px 0px 3.8px 0px rgba(255, 255, 255, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .modalContent p {
@@ -92,16 +113,25 @@
   color: white;
 }
 
-#cancle {
+.cancle.dark {
   background: transparent;
-border: none;
+  border: none;
   color: white;
   font-family: "Open Sans", serif;
   font-weight: 600;
   font-size: large;
   transition: background 0.2s, color 0.2s;
 }
-#cancle:hover {
+.cancle.light {
+  background: transparent;
+  border: none;
+  color: black;
+  font-family: "Open Sans", serif;
+  font-weight: 600;
+  font-size: large;
+  transition: background 0.2s, color 0.2s;
+}
+.cancle:hover {
   background: #cf3636;
   color: white;
 }

@@ -92,56 +92,52 @@ router.post("/login",async(req,res)=>{
 
 
 // update user data
-router.patch("/:id",authMiddleware,async(req,res)=>{
-    const userId = req.params.id;
+router.patch("/:id", authMiddleware,async (req, res) => {
+    const { id } = req.params;
+    const { name, email, oldPassword, newPassword } = req.body;
   
-    const {name,email,oldPassword,newPassword} = req.body;
-
-    try{
-        const user = await User.findById(userId);
-        console.log("user : ",user);
-        if(!user){
-            return res.status(404).json({message:"User not found!"});
-        } 
-        if(name && name === user.name){
-            return res.status(400).json("Name already exist!");
+    try {
+      const user = await User.findById(id);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      if (name && name === user.name) {
+        return res.status(400).json({ message: "Name already exists.Please provide different name" });
+      }
+  
+      if (email && email === user.email) {
+        return res.status(400).json({ message: "Email already exists.Please provide different email" });
+      }
+      // Verify old password if a new password is provided
+      if (newPassword && oldPassword) {
+        const isOldPasswordMatch = await bcrypt.compare(
+          oldPassword,
+          user.password
+        );
+        if (!isOldPasswordMatch) {
+          return res.status(400).json({ message: "Old password is incorrect" });
         }
-        if(email && email === user.email){
-            return res.status(400).json({message:"Email already exist!"});
+        const isSameAsOldPassword = await bcrypt.compare(newPassword, user.password);
+        if (isSameAsOldPassword) {
+          return res.status(400).json({ message: "New password cannot be the same as the old password. Please provide a unique password." });
         }
-
-        // verify old password if new password is provided
-
-        if(oldPassword && newPassword){
-           const isPasswordMatch = bcrypt.compare(oldPassword,user.password);
-
-            if(!isPasswordMatch){
-                return res.status(400).json({message:"Old password is incorrect!"});
-            }
-
-            const isSameAsOldPassword = bcrypt.compare(newPassword,user.password);
-
-            if(isSameAsOldPassword){
-                return res.status(400).json({message:"New password cannot be same as old password!"});
-            }
-            // hash and set new password
-            user.password = await bcrypt.hash(newPassword,10);
-
-        }
-        if(name){
-            user.name = name;
-        }
-        if(email){
-            user.email = email;
-        }
-        
-        await user.save();
-        return res.status(200).json({message:"User information updated successfully!"});
-
-    }catch(err){
-        console.error("Error updating user: ",err);
-        res.status(400).json({message:"updation failed"});
+  
+        // Hash and set new password
+        user.password = await bcrypt.hash(newPassword, 10);
+      }
+  
+      if (name) {
+        user.name = name;
+      }
+      if (email) {
+        user.email = email;
+      }
+      await user.save();
+      res.status(200).json({ message: "User information updated successfully!" });
+    } catch (err) {
+      console.error("Error updating user:", err);
+      res.status(500).json({ message: "Update failed" });
     }
-})
+  });
 
 module.exports = router;

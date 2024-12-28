@@ -4,6 +4,8 @@ import Form from '../../components/form/Form';
 import { getUserData, updateUser } from '../../apis/user';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserConatext';
+import { ModalContext } from '../../context/ModalContext';
+import LogoutModal from '../../components/logoutmodal/LogoutModal';
 import {toast} from 'react-toastify';
 import {
   userIcon,
@@ -16,7 +18,7 @@ import {
 
 function Settings() {
   const {loggedUserId,setLoggedUserData} = useContext(UserContext);
-  console.log("loggedUserId:",loggedUserId)
+  const { logoutModal, toggleLogoutModal } = useContext(ModalContext);
   const navigate = useNavigate();
   const [formData,setFormData]= useState({
     name:"",
@@ -165,10 +167,11 @@ function Settings() {
 
 
     } catch (err) {
+      console.error("err.response: ",err.response);
       if (err.response && err.response.status === 400) {
-        toast.error(err.response.data.message);
+        toast.error(err.response.data.message || err.response.data);
       } else {
-        console.error(err.response);
+        console.error("err.response: ",err.response);
       }
     }
 
@@ -191,9 +194,10 @@ function Settings() {
       <footer>
         <div>
             <img src={logout_icon} alt="icon" />
-            <button>Log out</button>
+            <button onClick={toggleLogoutModal}>Log out</button>
         </div>
       </footer>
+      {logoutModal && <LogoutModal/>}
     </div>
   )
 }
