@@ -57,9 +57,11 @@ function Dashboard() {
 
   const handleFolderClick = (folderId) => {
     setSelectedFolderId(folderId); // Set selected folder
+    setFiles([]);
+    fetchFilesOrFolders(folderId);
   };
   useEffect(() => {
-    fetchFilesOrFolders(selectedFolderId);
+    fetchFilesOrFolders(selectedFolderId || null);
   }, [selectedFolderId]);
 
   useEffect(()=>{

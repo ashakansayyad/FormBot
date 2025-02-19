@@ -13,7 +13,7 @@ router.post("/signup",async(req,res)=>{
     try{
        const userExist = await User.findOne({email});
        if(userExist){
-        res.status(400).json({message:"User Already Exist!"});
+       return res.status(400).json({message:"User Already Exist!"});
        }
 
     //hash password
@@ -35,7 +35,7 @@ router.post("/signup",async(req,res)=>{
 // get all users (without password)
 router.get("/",async(req,res)=>{
     try{
-        const allUsers = await User.find().select("-password -_v");
+        const allUsers = await User.find().select("-password -__v");
         if(!allUsers){
             return res.status(404).json({message:"User not found"})
         }
@@ -49,7 +49,7 @@ router.get("/",async(req,res)=>{
 router.get("/:id",authMiddleware,async(req,res)=>{
     const userId = req.params.id;
     try{
-        const userById = await User.findById(userId).select("-password -_v");
+        const userById = await User.findById(userId).select("-password -__v");
         if(!userById){
             return res.status(404).json({message:"user not found!"});
         }
@@ -81,7 +81,7 @@ router.post("/login",async(req,res)=>{
         const payload = {id : isValid._id};
 
         //  assign  the token using secret key
-        const token = jwt.sign(payload,process.env.JWT_SECRET);
+        const token = jwt.sign(payload,process.env.JWT_SECRET,{expiresIn:"1d"});
 
         return res.status(200).json({token});
 

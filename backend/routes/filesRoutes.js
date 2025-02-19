@@ -38,7 +38,7 @@ router.post("/",authMiddleware,async(req,res)=>{
               // Validate that parent is a folder
               if(parentId){
                 const parent = await Files.findById(parentId);
-                if(!parent || !parent.type === 'folder'){
+                if(!parent || parent.type !== 'folder'){
                     return res.status(400).json({message:"Parent must be a folder"});
                 }
               }

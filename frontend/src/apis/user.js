@@ -35,7 +35,7 @@ export const updateUser = async (id, data) => {
   const headers = addTokenToHeader({ headers: {} });
   const res = await axios.patch(
     `${import.meta.env.VITE_BASE_URL}/api/user/${id}`,
-    data,
+    data, 
     { headers }
   );
   return res;

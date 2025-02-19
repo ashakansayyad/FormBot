@@ -96,7 +96,7 @@ function Login() {
 
   useEffect(()=>{
     if(token){
-      navigate('/settings');
+      navigate('/dashboard');
     }
   },[])
 

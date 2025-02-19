@@ -32,7 +32,7 @@ export const deleteFileOrFolder =async(id)=>{
 // share dashboard by email
 export const shareByEmail = async(data)=>{
     const headers = addTokenToHeader({headers:{}});
-    const res = await axios.post(`${imoort.meta.env.VITE_BASE_URL}/api/share/email`,data,{
+    const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/share/email`,data,{
         headers
     });
 

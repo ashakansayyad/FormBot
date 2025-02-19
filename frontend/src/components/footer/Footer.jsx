@@ -13,7 +13,7 @@ function Footer() {
             </a>
         </div>
         <p>Made with ❤️ by <br />
-        @cuvette</p>
+        @Ashakan Sayyad</p>
       </div>
       <div className={styles.footer_product}>
             <p><b>Product</b></p>

@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { ThemeContext } from '../../context/ThemeContext';
 import { ModalContext } from '../../context/ModalContext';
 import { shareByEmail,shareByLink } from '../../apis/files';
+import { toast } from "react-toastify";
 
 function ShareModal() {
   const { shareModal, toggleShareModal } = useContext(ModalContext);
@@ -27,10 +28,24 @@ function ShareModal() {
 
   const handleShareByEmail = async()=>{
     try{
-      const res = await shareByEmail({email,permission})
+      const res = await shareByEmail({email,permission});
+      if(res && res.status === 200){
+        toast.success(res.data.message);
+      }
+    }catch(err){
+      console.error("Error sharing by email:", err);
     }
   }
 
+  const handleShareByLink = async()=>{
+    try{
+      const res = await shareByLink({isPublic : true});
+      setLink(res.data);
+      nevigator.clipboard.w
+    }catch(err){
+
+    }
+  }
   return (
     <>
       {shareModal && (
