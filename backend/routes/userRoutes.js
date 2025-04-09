@@ -48,6 +48,7 @@ router.get("/",async(req,res)=>{
 // get specefic user by id
 router.get("/:id",authMiddleware,async(req,res)=>{
     const userId = req.params.id;
+
     try{
         const userById = await User.findById(userId).select("-password -__v");
         if(!userById){
@@ -55,6 +56,7 @@ router.get("/:id",authMiddleware,async(req,res)=>{
         }
         return res.status(200).json(userById);
     }catch(err){
+      console.error("Error: ",err);
         return res.status(404).json({ message: "User data not found" });
     }
 })
@@ -81,7 +83,7 @@ router.post("/login",async(req,res)=>{
         const payload = {id : isValid._id};
 
         //  assign  the token using secret key
-        const token = jwt.sign(payload,process.env.JWT_SECRET,{expiresIn:"1d"});
+        const token = jwt.sign(payload,process.env.JWT_SECRET);
 
         return res.status(200).json({token});
 

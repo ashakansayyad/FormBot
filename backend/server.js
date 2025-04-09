@@ -8,16 +8,18 @@ const userRoute = require("./routes/userRoutes");
 const filesRoute = require("./routes/filesRoutes");
 const shareRoute = require("./routes/shareRoutes");
 const formRoute = require("./routes/formsRoute");
+const formShareRoute = require("./routes/formsShareRoutes");
 dotenv.config();
 
 
 app.use(cors());
-app.use(bodyParser.json()); //it parse the json data
+app.use(express.json()); //it parse the json data
 app.use(bodyParser.urlencoded({extended:true})); //it also parse the form data
 app.use("/api/user",userRoute);
 app.use("/api/files",filesRoute);
 app.use("/api/share",shareRoute);
 app.use("/api/form",formRoute);
+app.use("/api/formsahre",formShareRoute);
 
 
 

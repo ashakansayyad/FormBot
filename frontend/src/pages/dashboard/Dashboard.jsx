@@ -59,7 +59,15 @@ function Dashboard() {
     setSelectedFolderId(folderId); // Set selected folder
     setFiles([]);
     fetchFilesOrFolders(folderId);
+    
   };
+
+  const handleRedirectToFormBot = (parentFileId)=>{
+      navigate(`/workspace/${parentFileId}`);
+  }
+
+
+
   useEffect(() => {
     fetchFilesOrFolders(selectedFolderId || null);
   }, [selectedFolderId]);
@@ -126,6 +134,7 @@ function Dashboard() {
         </div>
         {filterFiles?.map((item) => (
           <div key={item._id} 
+          onClick={()=>handleRedirectToFormBot(item._id)}
           className={classNames(styles.fileContainer, {
             [styles.light]: !isDarkTheme,
             [styles.dark]: isDarkTheme,

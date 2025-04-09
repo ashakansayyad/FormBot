@@ -56,5 +56,6 @@ export {
     ratings_inputs,
     date_inputs,
     number_inputs,
-    formbot_start_icon
+    formbot_start_icon,
+   
 }

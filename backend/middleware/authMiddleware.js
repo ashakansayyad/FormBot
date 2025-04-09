@@ -4,8 +4,9 @@ dotenv.config();
 
 const authMiddleware = (req,res,next)=>{
 
-    // checks the authorization header ti get the JWT token from client
+    // checks the authorization header to get the JWT token from client
     const token = req.headers.authorization;
+    console.log("token: ",token);
     if(!token){
         return res.status(401).json({message:"user is not authorized!"});
     }

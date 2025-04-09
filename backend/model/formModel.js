@@ -8,14 +8,18 @@ const formSchema = new mongoose.Schema({
     babbles:[
       {
         type:{
-            type:String,  
+            type:String,
+            required:true,
+
+        },
+        name:{
+            type:String,
             required:true,
         },
         value:{
             type:String,
             required:true,
         }
-
       }
     ],
     inputFields:[
@@ -24,21 +28,25 @@ const formSchema = new mongoose.Schema({
                 type:String,
                 required:true,
             },
-            placeholder:{
+            name:{
                 type:String,
                 required:true,
+            },
+            value:{
+                type:String,               //required field only use for button
+                required:false,
             }
         }
     ],
-    parentFile:{
+    parentFileId:{
         type:mongoose.Schema.ObjectId,
         ref:"Files",
-        required:true,
+        required:false,
     },
     creator:{
         type:mongoose.Schema.ObjectId,
         ref:"User",
-        required:true,
+        required:false,
     }
 
 },{timestamps:true});

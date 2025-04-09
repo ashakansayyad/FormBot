@@ -1,28 +1,31 @@
 const express = require("express");
 const router = express.Router();
 const Form = require("../model/formModel")
-const authMiddleWare = require('../middleware/authMiddleware');
+
+const authMiddleware = require("../middleware/authMiddleware");
 
 
 // create form
-router.post("/create-form",async(req,res)=>{
-    const {title,babbles,inputFields,parentFile} = req.body;
+router.post("/create-form",authMiddleware,async(req,res)=>{
+   
     const userId = req.user;
     try{
-        const newForm = new Form({title,babbles,inputFields,parentFile,creator:userId});
+        
+        const newForm = new Form({title,babbles,inputFields,parentFileId,creator:userId});
         await newForm.save();
-        return res.status(201).json({message:"Form created successfully!"});
+        return res.status(201).json({message:"Form created successfully!",newForm});
     }catch(err){
-        console.err("Err: ",err);
+        console.error("Err: ",err);
         res.status(400).json({message:"Error occure while creating form"});
     }
 });
 
-// get form
-router.get("/get-form/:id",async(req,res)=>{
-    const {id} = req.params.id;
+// get specefic form
+router.get("/get-form/:parentFileId",async(req,res)=>{
+    const parentFileId = req.params.parentFileId;
+    
     try{
-        const form = await Form.findById({id});
+        const form = await Form.findOne({parentFileId});
         if(!form){
             return res.status(404).json({message:"Form not found"});
         }
@@ -33,6 +36,22 @@ router.get("/get-form/:id",async(req,res)=>{
     }
 });
 
+// update form
+router.put("/update-form/:parentFileId",authMiddleware,async(req,res)=>{
+    const parentFileId = req.params.parentFileId;
+    const {title,babbles,inputFields} = req.body;
+    const userId = req.user;
+    try{
+        const updatedForm = await Form.findOneAndUpdate({ parentFileId,creator:userId},{title,babbles,inputFields},{new:true});
+        if(!updatedForm){
+            return res.status(404).json({message:"Form not found or you are not authorized to update it"});
+        }
+        return res.status(200).json({message:"Form updated successfully!",form:updatedForm})
+    }catch(err){
+        console.log("Err: ",err);
+        res.status(400).json({message:"Error occured while updating form"});
+    }
+})
 
 
-module.export = router;
+module.exports = router;

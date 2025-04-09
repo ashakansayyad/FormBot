@@ -1,5 +1,5 @@
 import React,{useState,useEffect,createContext} from 'react';
-import {decodeToken} from 'react-jwt';
+import { decodeToken  } from "react-jwt";
 import { getUserData } from '../apis/user';
 
 export const UserContext = createContext();
@@ -18,10 +18,12 @@ const fetchUserData = async()=>{
       const token = localStorage.getItem("token");
       if(!token)return setIsLoading(false);
 
-      const decoded = decodeToken(token);
+      const decoded =await decodeToken (token);
       if(!decoded) return setIsLoading(false);
 
       const userId = decoded?.id;
+      
+      
       setLoggedUserId(userId);
 
       const res = await getUserData(userId);

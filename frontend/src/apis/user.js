@@ -42,7 +42,7 @@ export const updateUser = async (id, data) => {
 };
 
 // get logged user data
-export const getUserData = async (id) => {
+export const getUserData = async(id) => {
   const headers = addTokenToHeader({ headers: {} });
   const res = await axios.get(
     `${import.meta.env.VITE_BASE_URL}/api/user/${id}`,
